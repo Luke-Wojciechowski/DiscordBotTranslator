@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DicordBot
+﻿namespace DicordBot
 {
     class Program
     {
