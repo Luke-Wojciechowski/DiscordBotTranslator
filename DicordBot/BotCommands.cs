@@ -14,10 +14,9 @@ namespace DicordBot
         private Translator translator = new Translator();
 
         [Command("trans")]
-        public async Task Translate(CommandContext ctx, string s)
+        public async Task Translate(CommandContext ctx,params string[] s)
         {
-            // var res = String.Join(" ", feedback);
-            var result = await translator.Trans(s);
+            var result = await translator.Trans(string.Join(" ", s));
             await ctx.Channel.SendMessageAsync(result);
         }
     }
