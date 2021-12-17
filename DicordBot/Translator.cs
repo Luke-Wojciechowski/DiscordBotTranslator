@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -23,15 +24,17 @@ namespace DicordBot
                 .Replace(".", "")
                 .Trim();
 
-            //Removes extra commas
+            //Removes extra quotation marks("), commas(,) and slashes(\) 
             googleTranslatorResponse = Regex
                 .Replace(googleTranslatorResponse, ",+|,$", ",")
+                .Replace("\"", "")
+                .Replace("\\", " ")
                 .Trim();
 
             //Takes first 3 elements: translated text, original text, original text language token
             //Example: word, слово, ru
             var parts = googleTranslatorResponse.Split(",")[..3];
-            
+
             return new GoogleResponseContainer
             {
                 TranslatedText = parts[0],
